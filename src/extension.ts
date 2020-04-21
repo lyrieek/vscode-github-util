@@ -45,9 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerCommand('vscode-github-util.showAllAssumeUnchanged', () => {
 		if (activeEditor && rootPath) {
 			const terminal = vscode.window.createTerminal('Show hide file');
-			// terminal.sendText('cd ' + 'F:/Project/EmrApplication-Client');
 			terminal.sendText(`cd '${rootPath}'`);
-			// terminal.sendText('cd ' + path.resolve(rootPath, '.\\'));
 			terminal.sendText("git ls-files -v | grep '^h\ ' | awk '{print $2}'");
 			terminal.show();
 		}
