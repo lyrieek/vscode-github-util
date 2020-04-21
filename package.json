@@ -1,0 +1,90 @@
+{
+	"name": "github-extend-util",
+	"displayName": "Github Extend Util",
+	"publisher": "github-extend-util",
+	"author": "天浩",
+	"version": "0.0.1",
+	"description": "Github common extend util(by tianhao)",
+	"license": "Apache-2.0",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/lyrieek/github-extend-util.git"
+	},
+	"engines": {
+		"vscode": "^1.44.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:vscode-github-util.showFilePath",
+		"onCommand:vscode-github-util.showAllAssumeUnchanged",
+		"onCommand:vscode-github-util.assumeUnchanged",
+		"onCommand:vscode-github-util.noAssumeUnchanged",
+		"onCommand:vscode-github-util.copyFilePath"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "vscode-github-util.showFilePath",
+				"title": "Show File Path"
+			},
+			{
+				"command": "vscode-github-util.showAllAssumeUnchanged",
+				"title": "Show All Assume Changed Files"
+			},
+			{
+				"command": "vscode-github-util.assumeUnchanged",
+				"title": "Assume Changed"
+			},
+			{
+				"command": "vscode-github-util.noAssumeUnchanged",
+				"title": "No Assume Changed"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"command": "vscode-github-util.showFilePath",
+					"group": "modification"
+				}
+			],
+			"explorer/context": [
+				{
+					"command": "vscode-github-util.showFilePath",
+					"group": "modification"
+				},
+				{
+					"command": "vscode-github-util.assumeUnchanged",
+					"group": "modification"
+				},
+				{
+					"command": "vscode-github-util.noAssumeUnchanged",
+					"group": "modification"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"watch": "tsc -watch -p ./",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^7.0.2",
+		"@types/node": "^13.11.0",
+		"@types/vscode": "^1.44.0",
+		"@typescript-eslint/eslint-plugin": "^2.26.0",
+		"@typescript-eslint/parser": "^2.26.0",
+		"eslint": "^6.8.0",
+		"glob": "^7.1.6",
+		"mocha": "^7.1.1",
+		"typescript": "^3.8.3",
+		"vscode-test": "^1.3.0"
+	},
+	"dependencies": {}
+}
