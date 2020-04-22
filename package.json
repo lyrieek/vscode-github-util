@@ -17,53 +17,46 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:vscode-github-util.showFilePath",
+		"onCommand:vscode-github-util.showRootPath",
 		"onCommand:vscode-github-util.showAllAssumeUnchanged",
 		"onCommand:vscode-github-util.assumeUnchanged",
 		"onCommand:vscode-github-util.noAssumeUnchanged",
-		"onCommand:vscode-github-util.copyFilePath"
+		"onCommand:vscode-github-util.showAllGitEmojis"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
-			{
-				"command": "vscode-github-util.showFilePath",
-				"title": "Git extend util: Show File Path"
-			},
-			{
-				"command": "vscode-github-util.showAllAssumeUnchanged",
-				"title": "Git extend util: Show All Assume Changed Files"
-			},
-			{
-				"command": "vscode-github-util.assumeUnchanged",
-				"title": "Git extend util: Assume Changed"
-			},
-			{
-				"command": "vscode-github-util.noAssumeUnchanged",
-				"title": "Git extend util: No Assume Changed"
-			}
-		],
+		"commands": [{
+			"command": "vscode-github-util.showRootPath",
+			"title": "Git extend util: Show Root Path"
+		}, {
+			"command": "vscode-github-util.showAllAssumeUnchanged",
+			"title": "Git extend util: Show All Assume Changed Files"
+		}, {
+			"command": "vscode-github-util.assumeUnchanged",
+			"title": "Git extend util: Assume Changed"
+		}, {
+			"command": "vscode-github-util.noAssumeUnchanged",
+			"title": "Git extend util: No Assume Changed"
+		}, {
+			"command": "vscode-github-util.showAllGitEmojis",
+			"title": "Git extend util: Show All Git Emojis"
+		}],
 		"menus": {
-			"editor/context": [
-				{
-					"command": "vscode-github-util.showFilePath",
-					"group": "modification"
-				}
-			],
-			"scm/resourceState/context": [
-				{
-					"command": "vscode-github-util.showFilePath",
-					"group": "modification"
-				},
-				{
-					"command": "vscode-github-util.assumeUnchanged",
-					"group": "modification"
-				},
-				{
-					"command": "vscode-github-util.noAssumeUnchanged",
-					"group": "modification"
-				}
-			]
+			"editor/context": [{
+				"command": "vscode-github-util.showRootPath",
+				"group": "modification"
+			}],
+			"scm/resourceState/context": [{
+				"command": "vscode-github-util.showRootPath",
+				"group": "modification"
+			}, {
+				"command": "vscode-github-util.assumeUnchanged",
+				"group": "modification"
+			}],
+			"explorer/context": [{
+				"command": "vscode-github-util.noAssumeUnchanged",
+				"group": "modification"
+			}]
 		}
 	},
 	"scripts": {

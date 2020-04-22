@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
+import { emojis } from './emojis';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -7,7 +8,7 @@ export function activate(context: vscode.ExtensionContext) {
 	const activeEditor = vscode.window.activeTextEditor;
 	const rootPath = vscode.workspace.rootPath;
 
-	context.subscriptions.push(vscode.commands.registerCommand('vscode-github-util.showFilePath', () => {
+	context.subscriptions.push(vscode.commands.registerCommand('vscode-github-util.showRootPath', () => {
 		if (activeEditor && rootPath) {
 			vscode.window.showInformationMessage(rootPath);
 		}
@@ -15,15 +16,15 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(vscode.commands.registerCommand('vscode-github-util.assumeUnchanged', (e: any) => {
 		if (activeEditor && rootPath) {
-			if (e.scheme === 'file' && e.path) {
-				vscode.window.showInformationMessage(e.path);
+			if (e.original && e.original.scheme === 'file' && e.original.path) {
+				vscode.window.showInformationMessage(e.original.path);
 				const terminal = vscode.window.createTerminal('Assume Unchanged');
 				terminal.sendText(`cd '${rootPath}'`);
-				terminal.sendText('git update-index --assume-unchanged "' + e.path + '"');
+				terminal.sendText('git update-index --assume-unchanged "' + e.original.path + '"');
 				//.substr(rootPath.length + 1)
 				terminal.show();
 			} else {
-				vscode.window.showErrorMessage(`Unable to operate on folder:'${e.path}'`);
+				vscode.window.showErrorMessage(`Unable to operate on folder:'${e.original && e.original.path}'`);
 			}
 		}
 	}));
@@ -48,6 +49,18 @@ export function activate(context: vscode.ExtensionContext) {
 			terminal.sendText(`cd '${rootPath}'`);
 			terminal.sendText("git ls-files -v | grep '^h\ ' | awk '{print $2}'");
 			terminal.show();
+		}
+	}));
+
+	context.subscriptions.push(vscode.commands.registerCommand('vscode-github-util.showAllGitEmojis', () => {
+		if (activeEditor && rootPath) {
+			vscode.window.showQuickPick(emojis).then((e) => {
+				if (!e || !e.code) {
+					return;
+				}
+				vscode.env.clipboard.writeText(e.code);
+				vscode.commands.executeCommand('git.commitAll');
+			});
 		}
 	}));
 
