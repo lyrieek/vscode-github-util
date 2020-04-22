@@ -28,19 +28,19 @@
 		"commands": [
 			{
 				"command": "vscode-github-util.showFilePath",
-				"title": "Show File Path"
+				"title": "Git extend util: Show File Path"
 			},
 			{
 				"command": "vscode-github-util.showAllAssumeUnchanged",
-				"title": "Show All Assume Changed Files"
+				"title": "Git extend util: Show All Assume Changed Files"
 			},
 			{
 				"command": "vscode-github-util.assumeUnchanged",
-				"title": "Assume Changed"
+				"title": "Git extend util: Assume Changed"
 			},
 			{
 				"command": "vscode-github-util.noAssumeUnchanged",
-				"title": "No Assume Changed"
+				"title": "Git extend util: No Assume Changed"
 			}
 		],
 		"menus": {
@@ -50,7 +50,7 @@
 					"group": "modification"
 				}
 			],
-			"explorer/context": [
+			"scm/resourceState/context": [
 				{
 					"command": "vscode-github-util.showFilePath",
 					"group": "modification"
